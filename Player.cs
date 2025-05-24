@@ -38,6 +38,19 @@ public partial class Player : Area2D
 
         if (velocity.Length() > 0) // 如果有移動
         {
+            if (velocity.X != 0)
+            {
+                animateSprite2D.Animation = "walk";
+                animateSprite2D.FlipV = false; // 垂直翻轉動畫精靈
+                animateSprite2D.FlipH = velocity.X < 0;
+            }
+            else if (velocity.Y != 0)
+            {
+                animateSprite2D.Animation = "walk";
+                animateSprite2D.FlipV = velocity.Y > 0; // 垂直翻轉動畫精靈
+                animateSprite2D.FlipH = false; // 水平不翻轉
+            }
+
             velocity = velocity.Normalized() * this.Speed; // 正規化速度向量並乘上速度值
             animateSprite2D.Play(); // 播放移動動畫
         }

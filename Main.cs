@@ -28,6 +28,11 @@ public partial class Main : Node
 
     public void OnMobTimerTimeout()
     {
+        Mob mob = this.MobScene.Instantiate<Mob>();
+        var mobSpawnPostion = this.GetNode<PathFollow2D>("MobPath/MobSpawnLocation");
+
+        mobSpawnPostion.ProgressRatio = GD.Randf();
+
 
     }
 

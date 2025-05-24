@@ -6,6 +6,9 @@ public partial class Player : Area2D
     [Export]
     public int Speed { get; set; } = 400; // 玩家移動速度，預設為400，可在Godot編輯器中調整
 
+    [Signal]
+    public delegate void HitEventHandler();
+
     public Vector2 ScreenSize { get; set; } // 螢幕尺寸，用來限制玩家移動範圍
 
     override public void _Ready()
@@ -68,6 +71,27 @@ public partial class Player : Area2D
                 );
 
         base._Process(delta); // 呼叫父類別的_Process方法
+    }
+
+    public void Start(Vector2 position)
+    {
+        this.Position = position; // 設定玩家初始位置
+        this.Show(); // 顯示玩家
+        var coll = this.GetNode<CollisionShape2D>("CollisionShape2D"); // 取得碰撞形狀節點
+        coll.Disabled = false;
+    }
+
+
+    public void OnBodyEntered(Node2D body)
+    {
+        var coll = this.GetNode<CollisionShape2D>("CollisionShape2D"); // 取得碰撞形狀節點
+
+        this.Hide(); // 當玩家與其他物體碰撞時隱藏玩家
+        this.EmitSignal(SignalName.Hit); // 發出Hit事件信號
+
+        // 
+        coll.SetDeferred(CollisionShape2D.PropertyName.Disabled, true); // 延遲禁用碰撞形狀，避免再次觸發碰撞事件
+
     }
 
 }

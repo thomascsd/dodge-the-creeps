@@ -6,7 +6,7 @@
 
 [sub_resource type="Curve2D" id="Curve2D_lquwl"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -722.294, -196.584, 0, 0, 0, 0, -240.294, -196.584, 0, 0, 0, 0, -240.294, 524.416, 0, 0, 0, 0, -724.294, 521.416, 0, 0, 0, 0, -722.294, -196.584)
+"points": PackedVector2Array(0, 0, 0, 0, -693.294, -177.584, 0, 0, 0, 0, -273.294, -176.584, 0, 0, 0, 0, -282.294, 463.416, 0, 0, 0, 0, -695.294, 458.416, 0, 0, 0, 0, -693.294, -177.584)
 }
 point_count = 5
 
@@ -15,7 +15,6 @@ script = ExtResource("1_h2yge")
 MobScene = ExtResource("2_1bvp3")
 
 [node name="Player" parent="." instance=ExtResource("1_ig7tw")]
-visible = false
 
 [node name="MobTimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -27,7 +26,6 @@ wait_time = 2.0
 one_shot = true
 
 [node name="StartPosition" type="Marker2D" parent="."]
-visible = false
 position = Vector2(240, 450)
 
 [node name="MobPath" type="Path2D" parent="."]
@@ -35,6 +33,7 @@ position = Vector2(719.294, 193.584)
 curve = SubResource("Curve2D_lquwl")
 
 [node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
-position = Vector2(-722.294, -196.584)
+position = Vector2(-693.294, -177.584)
+rotation = 0.00238095
 
 [connection signal="Hit" from="Player" to="." method="GameOver"]

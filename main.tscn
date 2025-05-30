@@ -6,7 +6,7 @@
 
 [sub_resource type="Curve2D" id="Curve2D_lquwl"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -693.294, -177.584, 0, 0, 0, 0, -273.294, -176.584, 0, 0, 0, 0, -282.294, 463.416, 0, 0, 0, 0, -695.294, 458.416, 0, 0, 0, 0, -693.294, -177.584)
+"points": PackedVector2Array(0, 0, 0, 0, -721.294, -197.584, 0, 0, 0, 0, -242.294, -195.584, 0, 0, 0, 0, -242.294, 521.416, 0, 0, 0, 0, -726.294, 515.416, 0, 0, 0, 0, -721.294, -197.584)
 }
 point_count = 5
 
@@ -33,7 +33,7 @@ position = Vector2(719.294, 193.584)
 curve = SubResource("Curve2D_lquwl")
 
 [node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
-position = Vector2(-693.294, -177.584)
-rotation = 0.00238095
+position = Vector2(-721.294, -197.584)
+rotation = 0.00417534
 
 [connection signal="Hit" from="Player" to="." method="GameOver"]

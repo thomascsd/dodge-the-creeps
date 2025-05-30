@@ -53,20 +53,29 @@ public partial class Main : Node
         GD.Print("Mob Spawned");
         GD.Print(mob.ToString());
 
-        var mobSpawnPostion = this.GetNode<PathFollow2D>("MobPath/MobSpawnLocation");
+        // Choose a random location on Path2D.
+        var mobSpawnLocation = GetNode<PathFollow2D>("MobPath/MobSpawnLocation");
+        mobSpawnLocation.ProgressRatio = GD.Randf();
 
-        mobSpawnPostion.ProgressRatio = GD.Randf();
-        mob.Position = mobSpawnPostion.Position;
+        // Set the mob's direction perpendicular to the path direction.
+        float direction = mobSpawnLocation.Rotation + Mathf.Pi / 2;
 
-        var direction = mobSpawnPostion.Rotation + MathF.PI / 2;
+        // Set the mob's position to a random location.
+        // mob.Position = mobSpawnLocation.Position;
+        mob.Position = new Vector2(Math.Abs(mobSpawnLocation.Position.X), Math.Abs(mobSpawnLocation.Position.Y));
 
-        direction += (float)GD.RandRange(-MathF.PI / 4, MathF.PI / 4);
+        GD.Print("Mob Position: " + mob.Position.ToString());
+
+        // Add some randomness to the direction.
+        direction += (float)GD.RandRange(-Mathf.Pi / 4, Mathf.Pi / 4);
         mob.Rotation = direction;
 
-        var velocity = new Vector2((float)GD.RandRange(150, 250), 0);
+        // Choose the velocity.
+        var velocity = new Vector2((float)GD.RandRange(150.0, 250.0), 0);
         mob.LinearVelocity = velocity.Rotated(direction);
 
-        this.AddChild(mob);
+        // Spawn the mob by adding it to the Main scene.
+        AddChild(mob);
     }
 
     public void OnScoreTimerTimeout()

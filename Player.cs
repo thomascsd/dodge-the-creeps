@@ -89,8 +89,8 @@ public partial class Player : Area2D
         this.Hide(); // 當玩家與其他物體碰撞時隱藏玩家
         this.EmitSignal(SignalName.Hit); // 發出Hit事件信號
 
-        // 
-        coll.SetDeferred(CollisionShape2D.PropertyName.Disabled, true); // 延遲禁用碰撞形狀，避免再次觸發碰撞事件
+        // 延遲禁用碰撞形狀，避免再次觸發碰撞事件
+        coll.SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
 
     }
 

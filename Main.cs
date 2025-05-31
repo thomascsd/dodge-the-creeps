@@ -11,6 +11,8 @@ public partial class Main : Node
     private Timer _scoreTimer;
     private Timer _startTimer;
 
+    private Hud _hud;
+
     public override void _Ready()
     {
         GD.Print("Game Started");
@@ -19,6 +21,7 @@ public partial class Main : Node
 
     public void GameOver()
     {
+        _hud.ShowGameOver();
         _mobTimer.Stop();
         _scoreTimer.Stop();
     }
@@ -42,6 +45,10 @@ public partial class Main : Node
         this._startTimer.Timeout += this.OnStartTimerTimeout;
 
         this._startTimer.Start();
+
+        _hud = this.GetNode<Hud>("Hud");
+        _hud.UpdateScore(this._Score);
+        _hud.ShowMessageAndTimerStart("Dodge the Creeps!");
 
         GD.Print("New Game");
     }
@@ -81,6 +88,8 @@ public partial class Main : Node
     public void OnScoreTimerTimeout()
     {
         _Score++;
+        _hud.UpdateScore(this._Score);
+
     }
 
     public void OnStartTimerTimeout()
@@ -89,5 +98,7 @@ public partial class Main : Node
         this._mobTimer.Start();
         this._scoreTimer.Start();
     }
+
+
 
 }

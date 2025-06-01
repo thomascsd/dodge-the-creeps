@@ -15,8 +15,8 @@ public partial class Main : Node
 
     public override void _Ready()
     {
-        GD.Print("Game Started");
-        this.NewGame();
+        //GD.Print("Game Started");
+        //this.NewGame();
     }
 
     public void GameOver()
@@ -32,6 +32,8 @@ public partial class Main : Node
 
         var player = this.GetNode<Player>("Player");
         var startPosition = this.GetNode<Marker2D>("StartPosition");
+
+        this.GetTree().CallGroup("mobs", Node.MethodName.QueueFree);
 
         player.Position = startPosition.Position;
 
